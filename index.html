@@ -158,6 +158,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-剑指-Offer-26-树的子结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/01/12/%E5%89%91%E6%8C%87-Offer-26-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/">剑指 Offer 26. 树的子结构</a>
+    </h1>
+  
+
+        
+        <a href="/2023/01/12/%E5%89%91%E6%8C%87-Offer-26-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/" class="archive-article-date">
+  	<time datetime="2023-01-12T15:59:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>链接附上</p>
+<h3 id="剑指-Offer-26-树的子结构"><a href="#剑指-Offer-26-树的子结构" class="headerlink" title="剑指 Offer 26. 树的子结构"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/shu-de-zi-jie-gou-lcof/">剑指 Offer 26. 树的子结构</a></h3><p><img src="https://note.youdao.com/yws/res/4/WEBRESOURCE8de4e24da1b985a05b13cc063f1c7caf" alt="题目"></p>
+<p>评论里看到的代码，好优美简洁，再看看自己写的简直是依托答辩 TAT<br>希望自己以后也能独自写出这么优美的代码。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>先用先序遍历找到A中B的相等节点</li>
+<li>再以这个节点为根节点开始判断两个树结构是否相等</li>
+<li>如果结构不相等再继续寻找下一个相等节点</li>
+</ol>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isSubStructure</span><span class="params">(TreeNode A, TreeNode B)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(A == <span class="literal">null</span> || B == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">//此处递归是为了找root一致的节点</span></span><br><span class="line">        <span class="keyword">return</span> dfs(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//深度遍历，判断结构是否一致</span></span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">dfs</span><span class="params">(TreeNode A, TreeNode B)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(B == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(A == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> A.val == B.val &amp;&amp; dfs(A.left, B.left) &amp;&amp; dfs(A.right, B.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/01/12/%E5%89%91%E6%8C%87-Offer-26-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-hexo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
