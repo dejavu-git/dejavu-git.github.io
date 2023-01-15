@@ -158,6 +158,266 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Set接口及其实现类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/01/15/Set%E6%8E%A5%E5%8F%A3%E5%8F%8A%E5%85%B6%E5%AE%9E%E7%8E%B0%E7%B1%BB/">Set接口及其实现类</a>
+    </h1>
+  
+
+        
+        <a href="/2023/01/15/Set%E6%8E%A5%E5%8F%A3%E5%8F%8A%E5%85%B6%E5%AE%9E%E7%8E%B0%E7%B1%BB/" class="archive-article-date">
+  	<time datetime="2023-01-15T10:58:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Set接口基本介绍"><a href="#Set接口基本介绍" class="headerlink" title="Set接口基本介绍"></a>Set接口基本介绍</h3><ol>
+<li>无序，没有索引</li>
+<li>不允许重复元素，最多包含一个null</li>
+</ol>
+<h3 id="Set接口实现类-HashSet"><a href="#Set接口实现类-HashSet" class="headerlink" title="Set接口实现类 HashSet"></a>Set接口实现类 HashSet</h3><ol>
+<li>HashSet 实现Set接口</li>
+<li>HashSet 实际上是 HashMap</li>
+<li>只能存放一个null值</li>
+<li>不保证元素有序，取决于hash后，在确定索引的结果（即不保证存放元素的顺序和取出的顺序是一样的）</li>
+<li>不能有重复的对象&#x2F;元素</li>
+</ol>
+<h3 id="HashSet底层机制说明"><a href="#HashSet底层机制说明" class="headerlink" title="HashSet底层机制说明"></a>HashSet底层机制说明</h3><ol>
+<li>HashSet底层是HashMap</li>
+<li>添加一个元素时，先得到hash值，再转化成索引值</li>
+<li>找到存储数据表table，看这个索引位置是否已经存放元素。若没有，则直接加入；若有，则调用equal比较，如果相同，则放弃添加，如果不同，则添加到最后</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/01/15/Set%E6%8E%A5%E5%8F%A3%E5%8F%8A%E5%85%B6%E5%AE%9E%E7%8E%B0%E7%B1%BB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Vector底层结构和ArrayList的比较" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/01/15/Vector%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E5%92%8CArrayList%E7%9A%84%E6%AF%94%E8%BE%83/">Vector底层结构和ArrayList的比较</a>
+    </h1>
+  
+
+        
+        <a href="/2023/01/15/Vector%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E5%92%8CArrayList%E7%9A%84%E6%AF%94%E8%BE%83/" class="archive-article-date">
+  	<time datetime="2023-01-15T10:39:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Vector-和-ArrayList的比较"><a href="#Vector-和-ArrayList的比较" class="headerlink" title="Vector 和 ArrayList的比较"></a>Vector 和 ArrayList的比较</h2><table>
+<thead>
+<tr>
+<th align="center">数据结构</th>
+<th align="center">底层结构</th>
+<th align="center">线程安全</th>
+<th align="center">扩容倍数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ArrayList</td>
+<td align="center">可变数组</td>
+<td align="center">不安全，效率高</td>
+<td align="center">1.5倍</td>
+</tr>
+<tr>
+<td align="center">Vector</td>
+<td align="center">可变数组</td>
+<td align="center">安全，效率不高</td>
+<td align="center">2倍</td>
+</tr>
+</tbody></table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/01/15/Vector%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E5%92%8CArrayList%E7%9A%84%E6%AF%94%E8%BE%83/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ArrayList底层源码和扩容机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/01/14/ArrayList%E5%BA%95%E5%B1%82%E6%BA%90%E7%A0%81%E5%92%8C%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/">ArrayList底层源码和扩容机制</a>
+    </h1>
+  
+
+        
+        <a href="/2023/01/14/ArrayList%E5%BA%95%E5%B1%82%E6%BA%90%E7%A0%81%E5%92%8C%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/" class="archive-article-date">
+  	<time datetime="2023-01-14T11:26:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 1.ArrayList中维护了一个Object类型的数组 transient Object[] elementData; &#x2F;&#x2F; transient表示该属性不会被序列化</p>
+<p> 2.当创建ArrayList对象时，若使用的是无参构造器，则初始elementData容量为0时，第一次添加，则扩容的大小为10，后续若再次扩容，则扩容elementData为1.5倍。扩容使用的是Arrays.copyOf()<br> &#x2F;&#x2F;源码：grow函数 int newCapacity &#x3D; oldCapacity + (oldCapacity &gt;&gt; 1); </p>
+<p> 3.若使用的是指定大小的构造器，则初始容量为指定大小，后续若再次扩容，则扩容elementData为1.5倍。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/01/14/ArrayList%E5%BA%95%E5%B1%82%E6%BA%90%E7%A0%81%E5%92%8C%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-剑指-Offer-26-树的子结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -210,83 +470,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/01/12/%E5%89%91%E6%8C%87-Offer-26-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-hexo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/01/10/hello-hexo/">hello,hexo</a>
-    </h1>
-  
-
-        
-        <a href="/2023/01/10/hello-hexo/" class="archive-article-date">
-  	<time datetime="2023-01-10T11:26:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/01/10/hello-hexo/">展开全文 >></a>
         </p>
       
 
@@ -482,10 +665,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
