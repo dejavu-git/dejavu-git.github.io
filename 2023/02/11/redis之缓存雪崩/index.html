@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>ArrayList底层源码和扩容机制 | 我的叶绿体</title>
+  <title>redis之缓存雪崩 | 我的叶绿体</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.ArrayList中维护了一个Object类型的数组 transient Object[] elementData; &#x2F;&#x2F; transient表示该属性不会被序列化  2.当创建ArrayList对象时，若使用的是无参构造器，则初始elementData容量为0时，第一次添加，则扩容的大小为10，后续若再次扩容，则扩容elementData为1.5倍。扩容使用的是Arra">
+  <meta name="description" content="缓存雪崩是指在同一时段大量的缓存key同时失效或redis服务器宕机，导致大量的请求到达数据库，带来巨大压力。解决方案：  给不同的key的TTL添加随机值 利用redis集群提高服务的可用性 给缓存业务添加降级限流策略 给业务添加多级缓存">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ArrayList底层源码和扩容机制">
-<meta property="og:url" content="http://example.com/2023/01/14/ArrayList%E5%BA%95%E5%B1%82%E6%BA%90%E7%A0%81%E5%92%8C%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:title" content="redis之缓存雪崩">
+<meta property="og:url" content="http://example.com/2023/02/11/redis%E4%B9%8B%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9/index.html">
 <meta property="og:site_name" content="我的叶绿体">
-<meta property="og:description" content="1.ArrayList中维护了一个Object类型的数组 transient Object[] elementData; &#x2F;&#x2F; transient表示该属性不会被序列化  2.当创建ArrayList对象时，若使用的是无参构造器，则初始elementData容量为0时，第一次添加，则扩容的大小为10，后续若再次扩容，则扩容elementData为1.5倍。扩容使用的是Arra">
+<meta property="og:description" content="缓存雪崩是指在同一时段大量的缓存key同时失效或redis服务器宕机，导致大量的请求到达数据库，带来巨大压力。解决方案：  给不同的key的TTL添加随机值 利用redis集群提高服务的可用性 给缓存业务添加降级限流策略 给业务添加多级缓存">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-01-14T11:26:52.000Z">
-<meta property="article:modified_time" content="2023-01-14T14:44:32.024Z">
+<meta property="article:published_time" content="2023-02-11T09:32:51.000Z">
+<meta property="article:modified_time" content="2023-02-11T09:36:32.680Z">
 <meta property="article:author" content="我的叶绿体">
 <meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的叶绿体" type="application/atom+xml">
@@ -161,29 +162,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ArrayList底层源码和扩容机制" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-redis之缓存雪崩" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      ArrayList底层源码和扩容机制
+      redis之缓存雪崩
     </h1>
   
 
         
-        <a href="/2023/01/14/ArrayList%E5%BA%95%E5%B1%82%E6%BA%90%E7%A0%81%E5%92%8C%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/" class="archive-article-date">
-  	<time datetime="2023-01-14T11:26:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-14</time>
+        <a href="/2023/02/11/redis%E4%B9%8B%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9/" class="archive-article-date">
+  	<time datetime="2023-02-11T09:32:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> 1.ArrayList中维护了一个Object类型的数组 transient Object[] elementData; &#x2F;&#x2F; transient表示该属性不会被序列化</p>
-<p> 2.当创建ArrayList对象时，若使用的是无参构造器，则初始elementData容量为0时，第一次添加，则扩容的大小为10，后续若再次扩容，则扩容elementData为1.5倍。扩容使用的是Arrays.copyOf()<br> &#x2F;&#x2F;源码：grow函数 int newCapacity &#x3D; oldCapacity + (oldCapacity &gt;&gt; 1); </p>
-<p> 3.若使用的是指定大小的构造器，则初始容量为指定大小，后续若再次扩容，则扩容elementData为1.5倍。</p>
+        <p>缓存雪崩是指在同一时段大量的缓存key同时失效或redis服务器宕机，导致大量的请求到达数据库，带来巨大压力。<br>解决方案：</p>
+<ul>
+<li>给不同的key的TTL添加随机值</li>
+<li>利用redis集群提高服务的可用性</li>
+<li>给缓存业务添加降级限流策略</li>
+<li>给业务添加多级缓存</li>
+</ul>
 
       
 
@@ -219,6 +224,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
         		</li>
       		
 		</ul>
@@ -274,7 +283,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/01/14/ArrayList%E5%BA%95%E5%B1%82%E6%BA%90%E7%A0%81%E5%92%8C%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/02/11/redis%E4%B9%8B%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -288,18 +297,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/01/15/Vector%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E5%92%8CArrayList%E7%9A%84%E6%AF%94%E8%BE%83/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/02/11/redis%E4%B9%8B%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Vector底层结构和ArrayList的比较
+          redis之缓存击穿
         
       </div>
     </a>
   
   
-    <a href="/2023/01/12/%E5%89%91%E6%8C%87-Offer-26-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">剑指 Offer 26. 树的子结构</div>
+    <a href="/2023/02/11/redis%E4%B9%8B%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">redis之缓存穿透</div>
       <i class="icon-circle-right"></i>
     </a>
   
